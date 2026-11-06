@@ -26,7 +26,7 @@ window.addEventListener('keydown', (event) => {
     updatePositions();
 });
 
-const beyonceSpeed = 1;
+const beyonceSpeed = 0.5;
 
 function moveBeyonce() {
     if (beyoncePosition.x < playerPosition.x) {
