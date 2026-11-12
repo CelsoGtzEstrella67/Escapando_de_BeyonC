@@ -4,17 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="app.css">
-    <title>Escapa de Beyonce</title>
+    <title></title>
 </head>
 <body>
     
     <h1>Escapa de Beyoncé</h1>
-    <canvas id="game-area"> 
+    <div id="game-area"> 
         <div id="player" class="character"></div>
         <div id="beyonce" class="character"></div>
-    </canvas>
+    </div>
+    <button id="play" type="button"></button>
 
-    <script type="text/javascript" src="app.js"></script>
+    <div id="pause-overlay">
+    <h2>PAUSA</h2>
+
+    <div class="pause-buttons">
+        <button id="btn-resume">Continuar</button>
+        <button id="btn-restart">Reiniciar</button>
+    </div>
+
+    <div class="pause-buttons">
+        <button id="btn-slow">Lento</button>
+        <button id="btn-fast">Rápido</button>
+    </div>
+
+    <small>Pulsa P para continuar</small>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
 
 </body>
 </html>

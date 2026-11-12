@@ -1,12 +1,13 @@
 body {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #game-area {
-    width: 600px;
-    height: 600px;
     position: relative;
-    background-color: #f0f0f0;
+    height: 80vh;
+    background-color: #c07171;
     border: 2px solid #000;
 }
 
@@ -16,9 +17,98 @@ body {
     position: absolute;
 }
 #player{
-    background-color: blue;
+    background-image: url('./resources/images/Chiwis.gif');
+    background-size: cover;
 }
 #beyonce{
-    background-image: url('./resources/images/beyonce.png');
+    background-image: url('./resources/images/aimep3.gif');
     background-size: cover;
+}
+
+button {
+    height: 75px;
+    width: 75px;
+    margin-top: 20px;
+}
+
+#game-area {
+    position: relative;   /* necesario para que el overlay se posicione respecto a él */
+    overflow: hidden;
+}
+
+#pause-overlay {
+    position: absolute;
+    inset: 0;                     /* top/right/bottom/left: 0 */
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    font-family: sans-serif;
+
+    /* Oculto por defecto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    z-index: 100;                 /* encima de player y beyonce */
+}
+
+#pause-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pause-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.pause-buttons button {
+    padding: 10px 22px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background: #e91e63;
+    color: white;
+    font-weight: bold;
+}
+
+.pause-buttons button:hover {
+    background: #c2185b;
+}
+
+.speed-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 320px;
+    max-width: 80%;
+    font-size: 14px;
+}
+
+.speed-controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.speed-controls input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    accent-color: #e91e63;
+}
+
+.speed-controls span {
+    color: #e91e63;
+    font-weight: bold;
+}
+
+#btn-slow.active,
+#btn-fast.active {
+    background: #c2185b;
+    box-shadow: 0 0 0 3px #fff inset;
 }

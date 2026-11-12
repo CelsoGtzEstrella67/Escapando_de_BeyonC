@@ -3,25 +3,12 @@ const player = document.getElementById('player');
 const beyonce = document.getElementById('beyonce');
 const gameArea = document.getElementById('game-area');
 
-let playerPosition = { x: 50, y: 50 };
-let aimePosition = { x: 700, y: 550 };
-let vida = 1;
-let pausa = false; 
+let playerPosition = { x: 100, y: 100 };
+let beyoncePosition = { x: 300, y: 300 };
 
-const playerSpeed = 50;
+const playerSpeed = 40;
 
 window.addEventListener('keydown', (event) => {
-
-    if (event.key === 'p' || event.key === 'P' || event.key === 'Escape') {
-        if (event.repeat) return;   
-        pausa = !pausa;
-        gameArea.style.opacity = pausado ? 0.5 : 1;
-        return;                     
-    }
-}
-    if (pausa) return;
-
-
     switch(event.key){
         case 'ArrowUp':
             if (playerPosition.y > 0) playerPosition.y -= playerSpeed;
@@ -39,56 +26,48 @@ window.addEventListener('keydown', (event) => {
     updatePositions();
 });
 
-let AimeSpeed = 1;
+const beyonceSpeed = 1;
 
-function movePricha() {
-    if (aimePosition.x < playerPosition.x) {
-        aimePosition.x += AimeSpeed;
-    } else if (aimePosition.x > playerPosition.x) {
-        aimePosition.x -= AimeSpeed;
+function moveBeyonce() {
+    if (beyoncePosition.x < playerPosition.x) {
+        beyoncePosition.x += beyonceSpeed;
+    } else if (beyoncePosition.x > playerPosition.x) {
+        beyoncePosition.x -= beyonceSpeed;
     }
 
-    if (aimePosition.y < playerPosition.y) {
-        aimePosition.y += AimeSpeed;
-    } else if (aimePosition.y > playerPosition.y){
-        aimePosition.y -= AimeSpeed;
+    if (beyoncePosition.y < playerPosition.y) {
+        beyoncePosition.y += beyonceSpeed;
+    } else if (beyoncePosition.y > playerPosition.y){
+        beyoncePosition.y -= beyonceSpeed;
     }
 
     updatePositions();
     checkCollision();
-    updateVel();
-
 }
 
 function updatePositions() {
     player.style.transform = `translate(${playerPosition.x}px, ${playerPosition.y}px)`;
-    beyonce.style.transform = `translate(${aimePosition.x}px, ${aimePosition.y}px)`;
+    beyonce.style.transform = `translate(${beyoncePosition.x}px, ${beyoncePosition.y}px)`;
 }
 
 function checkCollision() {
-    if (Math.abs(playerPosition.x - aimePosition.x) < 10 &&
-        Math.abs(playerPosition.y - aimePosition.y) < 10) {
-        alert('¡ups!');
+    if (Math.abs(playerPosition.x - beyoncePosition.x) < 50 &&
+        Math.abs(playerPosition.y - beyoncePosition.y) < 50) {
+        alert('¡Beyoncé te atrapó!');
 
-        playerPosition = { x: 50, y: 50};
-        aimePosition = { x: 300, y: 300};
-
-        AimeSpeed = 1;
-        updatePositions();
-        
+        playerPosition = { x: 100, y: 100};
+        beyoncePosition = { x: 300, y: 300};
     }
 }
-
-function updateVel() {
-    AimeSpeed = AimeSpeed + 0.001;
-}
-
 
 function gameLoop() {
-    if (!pausa) {
-    movePricha();
-    }
+    moveBeyonce();
     requestAnimationFrame(gameLoop);
 }
 
 gameLoop();
+
+render(){
+    this.ctx.fillStyle = "#223483";
+        this.ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+}
